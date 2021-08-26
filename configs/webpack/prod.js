@@ -8,10 +8,15 @@ module.exports = merge(commonConfig, {
   mode: "production",
   entry: "./index.tsx",
   output: {
-    filename: "js/bundle.[contenthash].min.js",
+    filename: "main.js",
     path: resolve(__dirname, "../../dist"),
     publicPath: "/",
+    chunkFormat: 'module',
+    iife: false,
   },
   devtool: "source-map",
   plugins: [],
+  optimization: {
+    minimize: false,
+  },
 });

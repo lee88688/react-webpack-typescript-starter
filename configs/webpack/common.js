@@ -1,6 +1,7 @@
 // shared config (dev and prod)
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = {
   resolve: {
@@ -31,11 +32,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "index.html.ejs" })],
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
-  },
+  // plugins: [new HtmlWebpackPlugin({ template: "index.html.ejs" })],
+  plugins: [new webpack.ProgressPlugin({})],
+  // externals: {
+  //   react: "React",
+  //   "react-dom": "ReactDOM",
+  // },
   performance: {
     hints: false,
   },
