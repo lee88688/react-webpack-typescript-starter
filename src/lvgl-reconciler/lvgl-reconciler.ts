@@ -5,19 +5,23 @@ const reconciler = ReactReconciler({
   createInstance(type, props) {
     switch (type) {
       case 'obj': {
-        return createLvglObj();
+        return createLvglObj(props);
       }
       case 'label': {
-        return createLvglLabel();
+        const {text, style} = props;
+        const label = createLvglLabel(props);
+        label.setText(text);
+        return label;
       }
       default: break;
     }
     return createLvglObj();
   },
   createTextInstance(text) {
-    return createLvglLabel();
+    throw new Error("not support text instance.");
+    // return text;
   },
-  appendChildToContainer(container, child) {
+  appendChildToContainer(container: any, child: Obj) {
     container.appendChild(child);
   },
   appendInitialChild(parent: Obj, child: Obj) {
@@ -26,7 +30,7 @@ const reconciler = ReactReconciler({
   appendChild(parent: Obj, child: Obj) {
     parent.appendChild(child);
   },
-  removeChild(parent, child) {
+  removeChild(parent: Obj, child: Obj) {
     parent.removeChild(child);
   },
   insertBefore(parent, child, before) {
@@ -35,13 +39,16 @@ const reconciler = ReactReconciler({
   getRootHostContext() { return {}; },
   getChildHostContext() { return {}; },
   shouldSetTextContent() { return false; },
-  prepareForCommit() {},
+  resetTextContent(instance: Label) {
+    instance.resetText();
+  },
+  prepareForCommit() { return null },
   clearContainer() {},
   resetAfterCommit() {},
   finalizeInitialChildren () {},
 });
 
 export function render(element, root) {
-  const container = reconciler.createContainer(root, false, false);
+  const container = reconciler.createContainer(root, 0, false, null);
   reconciler.updateContainer(element, container, null, null);
 }
