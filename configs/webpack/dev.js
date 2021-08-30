@@ -1,6 +1,9 @@
 // development config
 const { merge } = require("webpack-merge");
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const commonConfig = require("./common");
 
 module.exports = merge(commonConfig, {
@@ -22,12 +25,20 @@ module.exports = merge(commonConfig, {
     iife: false,
   },
   watch: true,
-  // devServer: {
-  //   hot: true, // enable HMR on the server
-  //   historyApiFallback: true, // fixes error 404-ish errors when using react router :see this SO question: https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url 
-  // },
+  devServer: {
+    port: 8090,
+    // static: './dist',
+    hot: false, // enable HMR on the server
+    liveReload: true,
+    // historyApiFallback: true, // fixes error 404-ish errors when using react router :see this SO question: https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url 
+  },
   devtool: "cheap-module-source-map",
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-  // ],
+  plugins: [
+    // new webpack.HotModuleReplacementPlugin(), // enable HMR globally
+    new HtmlWebpackPlugin({ template: "index.html.ejs" }),
+    new CopyWebpackPlugin({
+      patterns: [
+      ]
+    })
+  ],
 });
