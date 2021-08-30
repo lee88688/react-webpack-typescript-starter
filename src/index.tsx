@@ -1,11 +1,12 @@
 import * as React from "react";
 import { render } from "./lvgl-reconciler/lvgl-reconciler";
 import App from "./components/App";
-import './mock/index';
+// import './mock/index';
 
 if (typeof window === 'undefined') {
     console.log('render!');
-    const rootEl = createContainer('');
+    // const rootEl = createContainer('');
+    const rootEl = { appendChild() {} };
     render(<App />, rootEl);
 }
 

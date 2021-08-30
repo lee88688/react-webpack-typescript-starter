@@ -47,4 +47,15 @@
         };
     </script>
     <script src="index.js"></script>
+    <script>
+        window.onload = () => {
+            setTimeout(() => {
+                fetch('./main.js').then(async res => {
+                    const code = await res.text();
+                    const str = Module.ccall('eval', 'string', ['string'], [code]);
+                    console.log(str);
+                })
+            }, 1000);
+        }
+    </script>
 </html>
