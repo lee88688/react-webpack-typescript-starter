@@ -29,7 +29,8 @@
     "start": "yarn run start-dev",
     "start-dev": "webpack serve --config=configs/webpack/dev.js",
     "start-prod": "yarn run build && node express.js",
-    "test": "jest --coverage --watchAll --config=configs/jest.json"
+    "test": "jest --coverage --watchAll --config=configs/jest.json",
+    "start-debugger-server": "node ./lib/debugger-websocket-server.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -70,7 +71,8 @@
     "webpack": "^5.46.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "ws": "^8.2.1"
   },
   "dependencies": {}
 }
