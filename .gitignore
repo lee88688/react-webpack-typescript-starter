@@ -5,3 +5,5 @@ src/**/*.jsx
 tests/__coverage__/
 tests/**/*.jsx
 yarn-error.log
+.yalc/
+yalc.lock
