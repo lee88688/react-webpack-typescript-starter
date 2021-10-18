@@ -1,4 +1,4 @@
-import ReactReconciler from 'react-reconciler'
+import ReactReconciler from 'react-reconciler';
 
 const reconciler = ReactReconciler({
   supportsMutation: true,
