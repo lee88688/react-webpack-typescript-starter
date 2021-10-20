@@ -1,10 +1,12 @@
 interface Obj {
   setWidth(width: number): void;
   setHeight(height: number): void;
-  
+
   appendChild(child: Obj): void;
   removeChild(child: Obj): void;
 }
+
+declare function attachToScreen(child: Obj): void;
 
 interface Label extends Obj {
   setText(text: string): void;

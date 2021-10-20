@@ -6,9 +6,13 @@ import App from './components/App';
 
 if (typeof window === 'undefined') {
   const runtime = require('@quickgl/runtime');
-  console.log('render!');
+  console.log('render!', global.execTimeoutFn);
   // const rootEl = createContainer('');
-  const rootEl = { appendChild() {} };
+  const rootEl = {
+    appendChild(child) {
+      attachToScreen(child);
+    },
+  };
   runtime.render(<App />, rootEl);
 }
 
