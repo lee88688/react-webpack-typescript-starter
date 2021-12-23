@@ -8,23 +8,23 @@ const commonConfig = require('./common');
 
 module.exports = merge(commonConfig, {
   mode: 'development',
-  entry: [
+  entry: {
     // "react-hot-loader/patch", // activate HMR for React
     // "webpack-dev-server/client?http://localhost:8080", // bundle the client for webpack-dev-server and connect to the provided endpoint
     // "webpack/hot/only-dev-server", // bundle the client for hot reloading, only- means to only hot reload for successful updates
-    './index.tsx', // the entry point of our app
-  ],
+    quickgl: './quickgl/index.tsx', // the entry point of our app
+    main: './index.tsx',
+  },
   optimization: {
     minimize: false,
   },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     chunkFormat: 'module',
     clean: true,
     globalObject: 'globalThis',
     iife: false,
   },
-  watch: true,
   devServer: {
     // overlay: false,
     port: 8090,
@@ -36,7 +36,7 @@ module.exports = merge(commonConfig, {
   devtool: 'cheap-module-source-map',
   plugins: [
     // new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-    new HtmlWebpackPlugin({ template: 'index.html.ejs' }),
+    new HtmlWebpackPlugin({ template: 'index.html.ejs', excludeChunks: ['quickgl'] }),
     new CopyWebpackPlugin({
       patterns: [
       ]

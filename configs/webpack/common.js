@@ -17,7 +17,20 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['@quickgl/lvgl-style-loader'],
+        oneOf: [
+          {
+            test: /\.lv\.css$/,
+            use: ['@quickgl/lvgl-style-loader'],
+          },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
+        ],
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,

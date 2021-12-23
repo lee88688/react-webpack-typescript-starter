@@ -50,7 +50,7 @@
     <script>
         window.onload = () => {
             setTimeout(() => {
-                fetch('./main.js').then(async res => {
+                fetch('./quickgl.js').then(async res => {
                     const code = await res.text();
                     const str = Module.ccall('run', 'string', ['string'], [code]);
                     console.log(str);
